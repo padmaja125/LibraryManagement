@@ -1,16 +1,21 @@
 function register(){
-    const form = document.getElementById("form");
+    // const form = document.getElementById("form");
     const userName = document.getElementById("userName");
     const email = document.getElementById("email");
     const password = document.getElementById("password");
     const passwordCheck= document.getElementById("passwordCheck");
 
-    form.addEventListener('submit', e=>{
-        e.preventDefault();
-        checkInput();
-    });
+    // form.addEventListener('submit', e=>{
+    //     e.preventDefault();
+        
+        if(checkInput(userName, email, password, passwordCheck)){
+            window.location.href="../HTML/Home.html"
+            return true;
+        };
+    // });
+    return false;
 }
-function checkInput(){
+function checkInput(userName, email, password, passwordCheck){
     const details = [];
     let formValid = false;
     let userNameValid=false;
@@ -38,8 +43,12 @@ function checkInput(){
         emailValid=true;
     }
     if (details[2] == ''){
+       
         setError(password,'password cannot be blank');
-    }else{
+    }else if(details[2].match(/[a-z]/gm)){
+        setError(password,'invalid format');
+    }
+    else{
         setSuccess(password);
         passwordValid=true;
     }
@@ -52,6 +61,11 @@ function checkInput(){
         setSuccess(passwordCheck);
         confirmPasswordValid=true;
     }
+    if ( confirmPasswordValid && passwordValid && emailValid && userNameValid ){
+        formValid = true;
+        return true;
+    }
+    return false;
 }
 
 function isEmail(email){
@@ -72,10 +86,4 @@ function setSuccess(input){
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
 
-}
-
-function formValidate(){
-    if ( confirmPasswordValid && passwordValid && emailValid && userNameValid ){
-        formValid = true;
-    }
 }

@@ -1,0 +1,205 @@
+:root {
+    --base-color: #171717;
+    --secondary-color: #a1460e;
+    --action-color: #cc6d3d;
+    --layover-color: #d2e1f36c;
+  }
+  
+  body {
+    margin: 0;
+    /* height: 200vh; */
+    background: linear-gradient(0deg,
+    rgb(17, 51, 161) 0%,
+    rgb(136, 34, 195) 100%);
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1.5fr;
+    grid-template-rows: 1fr 4fr 3fr 2fr;
+    grid-template-areas:
+      "header header header"
+      "main main main"
+      "childrens teens adults"
+      "footer footer footer";
+    height: 175vh;
+    gap: 0.5em;
+    margin: 1em;
+    color: white;
+    border-radius: 3px;
+  }
+  header {
+    grid-area: header;
+    background-color: whitesmoke;
+    background-blend-mode: screen;
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+
+  main {
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    grid-area: main;
+    background-color: var(--base-color);
+    background-image: url(../Images/Logo.jpg);
+    background-blend-mode: lighten;
+    background-size: cover;
+    display: flex;
+    justify-content:center;
+    align-items:flex-start;
+    font-size: 40px;
+    color:#a1460e;
+  }
+  
+  main:hover {
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    grid-area: main;
+    background-color: var(--base-color);
+    background-image: url(../Images/icon.jpg);
+    background-blend-mode: lighten;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    opacity: 0.7;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+ 
+  #childrens {
+    grid-area: childrens;
+    background-color: var(--layover-color);
+    background-image: url(../Images/ChildrenDepartment.jpg);
+    background-blend-mode: lighten;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+  }
+  
+  #childrens:hover {
+    grid-area: childrens;
+    background-color: var(--layover-color);
+    background-image: url(../images/car5.webp);
+    background-blend-mode: lighten;
+    color: var(--action-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  #teens{
+    grid-area: teens;
+    background-color: var(--layover-color);
+    background-image: url(../Images/teenDepartment.jpg);
+    background-blend-mode: lighten;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+  }
+  
+  #teens:hover {
+    grid-area: teens;
+    background-color: var(--layover-color);
+    background-image: url(../images/muffler.jpg);
+    background-blend-mode: lighten;
+    color: var(--action-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style-type: none;
+    margin-right: 40px;
+  }
+  a {
+    text-decoration: none;
+    columns: white;
+  }
+  
+  .adults {
+    grid-area: adults;
+    background-color: var(--action-color);
+    background-image: url(../images/car4.jpeg);
+    background-blend-mode: darken;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+  }
+  
+  .adults:hover {
+    grid-area: adults;
+    background-color: var(--action-color);
+    background-image: url(../images/car4.jpeg);
+    background-blend-mode: darken;
+    background-size: cover;
+    color: var(--action-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  .title{
+    color: brown;
+    justify-content: center;
+    display: flex;
+
+  }
+  footer {
+    grid-area: footer;
+    background-color: var(--secondary-color);
+  }
+  .socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  a {
+    margin-top: 100px;
+    height: 15px;
+    width: 15px;
+  }
+  a:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  strong {
+    margin-top: 100px;
+  }
+  #footerP {
+    margin-top: 118px;
+  }
+  
+  @media only screen and (max-width: 550px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 0.4fr 2.2fr 2.2fr 2.2fr 1.2fr  1.2fr;
+      grid-template-areas:
+        "header"
+        "main"
+        "childrens"
+        "teens"
+        "adults"
+        "footer";
+    }
+  }

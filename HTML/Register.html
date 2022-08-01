@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="../CSS/Register.css" />
+</head>
+
+<body>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="btn-noBorderAlternate close" id="modalClose" data-dismiss="modal"><span
+                    class="sr-only">Close</span><i class="fa fa-close"></i></button>
+        </div>
+        <div style="position:relative">
+            <div class="modal-body" style="color: rgb(61, 61, 61); overflow: auto; max-height: none;">
+
+                <h2 class="lightbox-header">Login</h2>
+                <span id="loginFlashMessages">
+                </span>
+
+                <div id="loginModalLoginBody">
+                    <form role="login" method="post" action="/MyResearch/Home" name="loginForm" id="loginForm"
+                        target="loginFrame">
+                        <div style="margin:auto">
+                            <div class="textBoxContainer fieldTitle">Barcode</div>
+                            <div class="textBoxContainer">
+                                <input type="text" name="username" id="login_username"
+                                    value="Enter your Library Card Number"
+                                    onfocus="ClearFormError(this); if (this.value=='Enter your Library Card Number') {this.value = '';this.style.color='#3d3d3d';}"
+                                    onblur="if (this.value=='') {this.value = 'Enter your Library Card Number';this.style.color='#949494';}"
+                                    class="form-control textBox">
+                                <i class="fa fa-exclamation-circle formErrorIcon"></i>
+                                <span id="login_usernameError" class="formError"></span>
+                            </div>
+                            <div class="textBoxContainer fieldTitle">PIN</div>
+                            <div class="textBoxContainer">
+                                <input type="password" name="password" id="login_password" value="XXXX"
+                                    onfocus="ClearFormError(this); if (this.value=='XXXX') { this.value = ''; this.type='password'; this.style.color='#3d3d3d';}"
+                                    onblur="if (this.value=='') { this.value = 'XXXX'; this.type='password'; this.style.color='#949494';}"
+                                    class="form-control textBox">
+                                <i class="fa fa-exclamation-circle formErrorIcon"></i>
+                                <span id="login_passwordError" class="formError"></span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="auth_method" value="ILS">
+                        <input type="hidden" name="csrf"
+                            value="f07656df040eb81174fa610fc35844f7-48409ae403b113e1e4bb2a6741ac7558">
+                        <input type="submit" class="submitButton" style="display:none">
+                    </form>
+                    <button style="margin-top:10px" class="btn-noBorderAlternate" id="loginModalReset"
+                        onclick="ToggleLoginModal(this);">
+                        <span class="headerLink">I forgot or want to change my PIN</span>
+                    </button><br>
+                    <button style="margin-top:10px" class="btn-noBorderAlternate" id="loginModalRegister"
+                        onclick="ToggleLoginModal(this);">
+                        <span class="headerLink">I need a library card</span>
+                    </button>
+                </div>
+                <div id="loginModalResetBody" style="color:#3f51b5;display:none">
+                    <form role="reset" method="post" action="/MyResearch/ResetPIN" name="resetForm" id="resetForm"
+                        autocomplete="off" target="loginFrame">
+                        <div style="margin:auto">
+                            <div class="textBoxContainer">
+                                <span class="sr-only">Library Card Number</span>
+                                <input type="text" name="username" id="reset_username"
+                                    value="Enter your Library Card Number"
+                                    onfocus="ClearFormError(this); if (this.value=='Enter your Library Card Number') {this.value = '';this.style.color='#3d3d3d';}"
+                                    onblur="if (this.value=='') {this.value = 'Enter your Library Card Number';this.style.color='#949494';}"
+                                    class="form-control textBox">
+                                <i class="fa fa-exclamation-circle formErrorIcon"></i>
+                                <span id="reset_usernameError" class="formError"></span>
+                            </div><br>
+                        </div>
+                        <div class="forgotText">
+                            Please enter your 14 digit library card number above. An email from helpdesk@einetwork.net
+                            will be sent to the email address in your patron record with a link to change your
+                            PIN.<br><br>
+                            If you don't have an email address on file, please contact your library staff to assign one
+                            to your record.
+                        </div>
+                    </form>
+                    <button style="margin-top:10px" class="btn-noBorderAlternate" id="loginModalLogin"
+                        onclick="ToggleLoginModal(this);">
+                        <span class="headerLink">I remembered my PIN and want to sign in</span>
+                    </button>
+                </div>
+                <div id="loginModalRegisterBody" class="registerBody" style="color:#3f51b5;display:none">
+                    <div class="EIN-col-m-12" id="eCARDIntroText">
+                        <div class="forgotText">
+                            Submitting this form will register you for a new library card. If you already have a library
+                            card and just want to sign into your account, please use the link below to go back to the
+                            login window.
+                        </div><br>
+                        <div class="forgotText">
+                            Please be advised that individuals residing outside of Allegheny County who do not have a
+                            current Access PA library card from their home library may be assessed a fee when completing
+                            their registration at the library.
+                        </div><br>
+                        <button style="margin-top:10px" class="btn-noBorderAlternate" id="loginModalLogin"
+                            onclick="ToggleLoginModal(this);">
+                            <span class="headerLink">I already have a library card and want to sign in</span>
+                        </button>
+                        <br><br>
+                        <div class="EIN-col-m-12 forgotText">
+                            <div class="EIN-col-m-12" style="font-weight:800">Adult Library Card Application (for new
+                                library patrons age 18 and older)</div><br><br>
+                            <div class="EIN-col-m-12">Residents of Allegheny County can register for a card here and
+                                receive instant access to a wide array of eBooks, downloadable materials, and other
+                                electronic resources. After you've registered, you can start placing holds online, or
+                                visit a library in-person to check out books, DVDs, music, and a wide variety of other
+                                resources. This card is eligible for accessing materials from any Allegheny County
+                                Library Association Library.<br>
+                                <ul>
+                                    <li>Currently this service is only for adult patrons over 18. If seeking a juvenile
+                                        card, business card, or other special-use library card, please visit your local
+                                        library in person.</li>
+                                    <li>If the system is unable to validate your information, you will be issued a
+                                        temporary eCard that allows you access to electronic resources for 30 days. To
+                                        upgrade to a card with full borrowing privileges, visit any County library with
+                                        proof of ID and current address.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+
+                    <div class="EIN-col-m-12" style="color:#000;text-align:left">
+                        <div id="eCARDFiles">
+                            <link href="https://ecard.quipugroup.net/css/eCARD.css" rel="stylesheet">
+                            <link
+                                href="https://ecard.quipugroup.net/js/jqueryUI/css/ui-lightness/jquery-ui-1.10.4.custom.min.css"
+                                rel="stylesheet">
+                            <script type="text/javascript"
+                                src="https://ecard.quipugroup.net/js/jqueryUI/js/jquery-ui-1.10.4.custom.min.js"></script>
+                            <script type="text/javascript"
+                                src="https://ecard.quipugroup.net/js/jquery.xdomainrequest.min.js"></script>
+                            <script type="text/javascript"
+                                src="https://ecard.quipugroup.net/js/jquery.PrintArea.js"></script>
+                            <script type="text/javascript" src="https://ecard.quipugroup.net/js/eCARDMain.js"></script>
+                            <script type="text/javascript"
+                                src="https://ecard.quipugroup.net/Libraries/35/eCARDLibrary.js"></script>
+                        </div>
+
+                        <div id="eCARD" data-language="en" data-branchid="">
+                            <document>
+                                <link rel="stylesheet"
+                                    href="https://ecard.quipugroup.net/css/eCARD.css?d=20220728040531">
+                                <link rel="stylesheet"
+                                    href="https://ecard.quipugroup.net/Libraries/35/eCARDLibrary.css?d=20220728040531">
+
+
+                                <!-- <h1>SAMPLE FORM</h1> -->
+                                <!-- <p id="eCARDLibraryName"></p>  -->
+                                <!-- <h2><span id="eCARDBranchName"></span></h2> -->
+
+
+                                <div id="eCARDSpinner" class="eCARDSpinnerNI"></div>
+
+                                <div id="eCARDRegistrationForm" style="display: block;">
+                                    <!-- Name Section -->
+                                    <div id="eCARDSectionName">
+                                        <h4><span id="eCARDHeadingName" class="eCARDSectionName">Name</span></h4>
+
+                                        <div>
+                                            <label for="eCARDFirstName"><span id="eCARDLabelFirstName">First
+                                                    Name</span><span class="eCARDRequired">*</span></label>
+                                            <input id="eCARDFirstName" type="text" class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertFirstNameAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertFirstName" class="eCARDtooltiptext">Please enter
+                                                    your first name, letters only.</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDMiddleName"><span id="eCARDLabelMiddleName">Middle
+                                                    Initial</span></label>
+                                            <input id="eCARDMiddleName" type="text" class="eCARDTxt">
+                                            <div id="eCARDAlertMiddleNameAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertMiddleName" class="eCARDtooltiptext">Please enter
+                                                    your middle name, letters only.</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDLastName"><span id="eCARDLabelLastName">Last
+                                                    Name</span><span class="eCARDRequired">*</span></label>
+                                            <input id="eCARDLastName" type="text" class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertLastNameAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertLastName" class="eCARDtooltiptext">Please enter your
+                                                    last name, letters and hyphens only</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Residence Section -->
+                                    <div id="eCARDSectionResidence">
+                                        <h4><span id="eCARDHeadingResidence" class="eCARDSectionName">Home
+                                                Address</span></h4>
+
+                                        <p><span id="eCARDMessageSectionResidence"
+                                                class="eCARDSectionMessageNote">Please enter your physical
+                                                address.</span></p>
+
+
+                                        <!-- address override -->
+                                        <div id="eCARDAddressOverrideDiv" style="display:none;">
+                                            <input type="checkbox" id="eCARDAddressOverride">
+
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDStreetResidence"><span
+                                                    id="eCARDLabelStreetResidence">Street</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <input id="eCARDStreetResidence" type="text"
+                                                class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertStreetResidenceAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertStreetResidence" class="eCARDtooltiptext">Enter your
+                                                    street address.</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDAptResidence"><span id="eCARDLabelAptResidence">Apartment
+                                                    or Suite #</span></label>
+                                            <input id="eCARDAptResidence" type="text" class="eCARDTxt">
+                                            <div id="eCARDAlertAptResidenceAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertAptResidence" class="eCARDtooltiptext">Enter your
+                                                    apartment number.</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDCityResidence"><span
+                                                    id="eCARDLabelCityResidence">City</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <input id="eCARDCityResidence" type="text"
+                                                class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertCityResidenceAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertCityResidence" class="eCARDtooltiptext">Enter your
+                                                    city.</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="eCARDStateResidence"><span
+                                                    id="eCARDLabelStateResidence">State</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <select id="eCARDStateResidence">
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="CT">Connecticut</option>
+                                                <option value="DE">Delaware</option>
+                                                <option value="DC">District of Columbia</option>
+                                                <option value="FL">Florida</option>
+                                                <option value="GA">Georgia</option>
+                                                <option value="HI">Hawaii</option>
+                                                <option value="ID">Idaho</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IN">Indiana</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="ME">Maine</option>
+                                                <option value="MD">Maryland</option>
+                                                <option value="MA">Massachusetts</option>
+                                                <option value="MI">Michigan</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="MT">Montana</option>
+                                                <option value="NE">Nebraska</option>
+                                                <option value="NV">Nevada</option>
+                                                <option value="NH">New Hampshire</option>
+                                                <option value="NJ">New Jersey</option>
+                                                <option value="NM">New Mexico</option>
+                                                <option value="NY">New York</option>
+                                                <option value="NC">North Carolina</option>
+                                                <option value="ND">North Dakota</option>
+                                                <option value="OH">Ohio</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="OR">Oregon</option>
+                                                <option value="PA">Pennsylvania</option>
+                                                <option value="RI">Rhode Island</option>
+                                                <option value="SC">South Carolina</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="UT">Utah</option>
+                                                <option value="VT">Vermont</option>
+                                                <option value="VA">Virginia</option>
+                                                <option value="WA">Washington</option>
+                                                <option value="WV">West Virginia</option>
+                                                <option value="WI">Wisconsin</option>
+                                                <option value="WY">Wyoming</option>
+                                            </select>
+                                            <div id="eCARDAlertStateResidenceAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertStateResidence" class="eCARDtooltiptext"></span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDPostalCodeResidence"><span
+                                                    id="eCARDLabelPostalCodeResidence">Zip</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <input id="eCARDPostalCodeResidence" type="text"
+                                                class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertPostalCodeResidenceAnchor"
+                                                class="eCARDtooltip eCARDAlert" style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertPostalCodeResidence" class="eCARDtooltiptext">Enter
+                                                    your zip/postal code.<br>Example: 45287 or 45287-9586</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- Mailing Section -->
+                                    <div id="eCARDSectionMailing" style="display:none;">
+                                        <h4><span id="eCARDHeadingMailing" class="eCARDSectionName">Mailing
+                                                Address</span></h4>
+
+                                        <div>
+                                            <input type="checkbox" id="eCARDMailingSame" class="eCARDSectionMessageNote"
+                                                checked="checked"
+                                                onclick="eCARDtoggleCheckbox(this.id,'eCARDMailingAddress');">
+                                            <span id="eCARDMessageMailingSame" class="eCARDSectionMessageNote">My
+                                                mailing address is the same as my home address.</span>
+                                        </div>
+
+                                        <div id="eCARDMailingAddress" style="display: none;">
+                                            <div>
+                                                <label for="eCARDStreetMailing"><span
+                                                        id="eCARDLabelStreetMailing">Street</span></label>
+                                                <input id="eCARDStreetMailing" type="text"
+                                                    class="eCARDTxt eCARDRequiredField">
+                                                <div id="eCARDAlertStreetMailingAnchor" class="eCARDtooltip eCARDAlert"
+                                                    style="display: none;">
+                                                    <img class="alertQuestionMark"
+                                                        src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                    <span id="eCARDAlertStreetMailing" class="eCARDtooltiptext">Enter
+                                                        your street address.</span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="eCARDAptMailing"><span id="eCARDLabelAptMailing">Apartment
+                                                        or Suite #</span></label>
+                                                <input id="eCARDAptMailing" type="text" class="eCARDTxt">
+                                                <div id="eCARDAlertAptMailingAnchor" class="eCARDtooltip eCARDAlert"
+                                                    style="display: none;">
+                                                    <img class="alertQuestionMark"
+                                                        src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                    <span id="eCARDAlertAptMailing" class="eCARDtooltiptext">Enter your
+                                                        apartment number.</span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="eCARDCityMailing"><span
+                                                        id="eCARDLabelCityMailing">City</span></label>
+                                                <input id="eCARDCityMailing" type="text"
+                                                    class="eCARDTxt eCARDRequiredField">
+                                                <div id="eCARDAlertCityMailingAnchor" class="eCARDtooltip eCARDAlert"
+                                                    style="display: none;">
+                                                    <img class="alertQuestionMark"
+                                                        src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                    <span id="eCARDAlertCityMailing" class="eCARDtooltiptext">Enter your
+                                                        city.</span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="eCARDStateMailing"><span
+                                                        id="eCARDLabelStateMailing">State</span></label>
+                                                <select id="eCARDStateMailing">
+                                                    <option value="AL">Alabama</option>
+                                                    <option value="AK">Alaska</option>
+                                                    <option value="AZ">Arizona</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="CA">California</option>
+                                                    <option value="CO">Colorado</option>
+                                                    <option value="CT">Connecticut</option>
+                                                    <option value="DE">Delaware</option>
+                                                    <option value="DC">District of Columbia</option>
+                                                    <option value="FL">Florida</option>
+                                                    <option value="GA">Georgia</option>
+                                                    <option value="HI">Hawaii</option>
+                                                    <option value="ID">Idaho</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IN">Indiana</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                    <option value="KY">Kentucky</option>
+                                                    <option value="LA">Louisiana</option>
+                                                    <option value="ME">Maine</option>
+                                                    <option value="MD">Maryland</option>
+                                                    <option value="MA">Massachusetts</option>
+                                                    <option value="MI">Michigan</option>
+                                                    <option value="MN">Minnesota</option>
+                                                    <option value="MS">Mississippi</option>
+                                                    <option value="MO">Missouri</option>
+                                                    <option value="MT">Montana</option>
+                                                    <option value="NE">Nebraska</option>
+                                                    <option value="NV">Nevada</option>
+                                                    <option value="NH">New Hampshire</option>
+                                                    <option value="NJ">New Jersey</option>
+                                                    <option value="NM">New Mexico</option>
+                                                    <option value="NY">New York</option>
+                                                    <option value="NC">North Carolina</option>
+                                                    <option value="ND">North Dakota</option>
+                                                    <option value="OH">Ohio</option>
+                                                    <option value="OK">Oklahoma</option>
+                                                    <option value="OR">Oregon</option>
+                                                    <option value="PA">Pennsylvania</option>
+                                                    <option value="RI">Rhode Island</option>
+                                                    <option value="SC">South Carolina</option>
+                                                    <option value="SD">South Dakota</option>
+                                                    <option value="TN">Tennessee</option>
+                                                    <option value="TX">Texas</option>
+                                                    <option value="UT">Utah</option>
+                                                    <option value="VT">Vermont</option>
+                                                    <option value="VA">Virginia</option>
+                                                    <option value="WA">Washington</option>
+                                                    <option value="WV">West Virginia</option>
+                                                    <option value="WI">Wisconsin</option>
+                                                    <option value="WY">Wyoming</option>
+                                                </select>
+                                                <div id="eCARDAlertStateMailingAnchor" class="eCARDtooltip eCARDAlert"
+                                                    style="display: none;">
+                                                    <img class="alertQuestionMark"
+                                                        src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                    <span id="eCARDAlertStateMailing" class="eCARDtooltiptext">Select
+                                                        your state.</span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="eCARDPostalCodeMailing"><span
+                                                        id="eCARDLabelPostalCodeMailing">Zip</span></label>
+                                                <input id="eCARDPostalCodeMailing" type="text"
+                                                    class="eCARDTxt eCARDRequiredField">
+                                                <div id="eCARDAlertPostalCodeMailingAnchor"
+                                                    class="eCARDtooltip eCARDAlert" style="display: none;">
+                                                    <img class="alertQuestionMark"
+                                                        src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                    <span id="eCARDAlertPostalCodeMailing"
+                                                        class="eCARDtooltiptext">Enter your zip/postal code.<br>Example:
+                                                        45287 or 45287-9586</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Contact Section -->
+                                    <div id="eCARDSectionContact">
+                                        <h4><span id="eCARDHeadingContact" class="eCARDSectionName">Contact
+                                                Information</span></h4>
+
+                                        <div>
+                                            <label for="eCARDNotificationPreference"><span
+                                                    id="eCARDLabelNotificationPreference">Notification
+                                                    Preference</span><span id="eCARDLabeNotificationPreferenceAsterisk"
+                                                    class="eCARDRequired">*</span></label>
+                                            <select id="eCARDNotificationPreference" class="eCARDRequiredField">
+                                                <option value="p">Telephone</option>
+                                                <option value="z">Email</option>
+                                            </select>
+                                            <div id="eCARDAlertNotificationPreferenceAnchor"
+                                                class="eCARDtooltip eCARDAlert" style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertNotificationPreference"
+                                                    class="eCARDtooltiptext"></span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDTNArea"><span
+                                                    id="eCARDLabelTelephone">Telephone</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <input id="eCARDTNArea" type="tel" maxlength="3" size="4"
+                                                onkeyup="eCARDAutoTab(this, 'eCARDTNPrefix',3);"
+                                                class="eCARDRequiredField">
+                                            <input id="eCARDTNPrefix" type="tel" maxlength="3" size="4"
+                                                onkeyup="eCARDAutoTab(this, 'eCARDTNNumber',3);"
+                                                class="eCARDRequiredField">
+                                            <input id="eCARDTNNumber" type="tel" maxlength="4" size="4"
+                                                class="eCARDRequiredField">
+                                            <div id="eCARDAlertTelephoneAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertTelephone" class="eCARDtooltiptext">Enter your phone
+                                                    number, numbers only</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="eCARDEmail"><span id="eCARDLabelEmail">Email Address</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <input type="text" id="eCARDEmail" class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertEmailAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertEmail" class="eCARDtooltiptext">Enter your email
+                                                    address.</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="eCARDEmailConfirm"><span id="eCARDLabelEmailConfirm">Email
+                                                    Address (Confirm)</span><span class="eCARDRequired">*</span></label>
+                                            <input type="text" id="eCARDEmailConfirm"
+                                                class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertEmailConfirmAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertEmailConfirm" class="eCARDtooltiptext">Confirmation
+                                                    email must match your email address.</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Other Section -->
+                                    <div id="eCARDSectionOther">
+                                        <h4><span id="eCARDHeadingOther" class="eCARDSectionName">Other
+                                                Information</span></h4>
+
+                                        <!--- Password/PIN -->
+                                        <div>
+                                            <label for="eCARDPassword"><span id="eCARDLabelPassword">PIN</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <input id="eCARDPassword" type="password"
+                                                class="eCARDTxt eCARDRequiredField">
+
+                                            <div class="eCARDtooltip" style="display:inline;">
+                                                <img class="eCARDInfoIcon"
+                                                    src="https://ecard.quipugroup.net/imgs/info-icon.png">
+                                                <span id="eCARDInfoPassword" class="eCARDtooltiptext">PIN requirements:
+                                                    <ul>
+                                                        <li>4 digits</li>
+                                                        <li>Same digit can't repeat more than 2 times (Ex: 2224)</li>
+                                                        <li>Same two digits can't repeat (Ex: 1212)</li>
+                                                    </ul>
+                                                </span>
+                                            </div>
+
+                                            <div id="eCARDAlertPasswordAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertPassword" class="eCARDtooltiptext">PIN requirements:
+                                                    <ul>
+                                                        <li>4 digits</li>
+                                                        <li>Same digit can't repeat more than 2 times (Ex: 2224)</li>
+                                                        <li>Same two digits can't repeat (Ex: 1212)</li>
+                                                    </ul>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!--- Password/PIN Confirmation -->
+                                        <div>
+                                            <label for="eCARDPasswordConfirmation"><span
+                                                    id="eCARDLabelPasswordConfirmation">PIN (Confirm)</span><span
+                                                    class="eCARDRequired">*</span></label>
+                                            <input id="eCARDPasswordConfirmation" type="password"
+                                                class="eCARDTxt eCARDRequiredField">
+                                            <div id="eCARDAlertPasswordConfirmationAnchor"
+                                                class="eCARDtooltip eCARDAlert" style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertPasswordConfirmation" class="eCARDtooltiptext">PIN
+                                                    confirmation does not match PIN</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Date of Birth -->
+                                        <div>
+                                            <label for="eCARDDOBMonth" class="forceWrap"><span id="eCARDLabelDOB">Date
+                                                    of Birth</span><span class="eCARDRequired">*</span></label>
+                                            <select id="eCARDDOBMonth" class="eCARDRequiredField">
+                                                <option value="0">Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                            <select id="eCARDDOBDay" class="eCARDRequiredField">
+                                                <option value="0">Day</option>
+                                            </select>
+                                            <select id="eCARDDOBYear" class="eCARDRequiredField">
+                                                <option value="0">Year</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2014">2014</option>
+                                                <option value="2013">2013</option>
+                                                <option value="2012">2012</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2000">2000</option>
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1990">1990</option>
+                                                <option value="1989">1989</option>
+                                                <option value="1988">1988</option>
+                                                <option value="1987">1987</option>
+                                                <option value="1986">1986</option>
+                                                <option value="1985">1985</option>
+                                                <option value="1984">1984</option>
+                                                <option value="1983">1983</option>
+                                                <option value="1982">1982</option>
+                                                <option value="1981">1981</option>
+                                                <option value="1980">1980</option>
+                                                <option value="1979">1979</option>
+                                                <option value="1978">1978</option>
+                                                <option value="1977">1977</option>
+                                                <option value="1976">1976</option>
+                                                <option value="1975">1975</option>
+                                                <option value="1974">1974</option>
+                                                <option value="1973">1973</option>
+                                                <option value="1972">1972</option>
+                                                <option value="1971">1971</option>
+                                                <option value="1970">1970</option>
+                                                <option value="1969">1969</option>
+                                                <option value="1968">1968</option>
+                                                <option value="1967">1967</option>
+                                                <option value="1966">1966</option>
+                                                <option value="1965">1965</option>
+                                                <option value="1964">1964</option>
+                                                <option value="1963">1963</option>
+                                                <option value="1962">1962</option>
+                                                <option value="1961">1961</option>
+                                                <option value="1960">1960</option>
+                                                <option value="1959">1959</option>
+                                                <option value="1958">1958</option>
+                                                <option value="1957">1957</option>
+                                                <option value="1956">1956</option>
+                                                <option value="1955">1955</option>
+                                                <option value="1954">1954</option>
+                                                <option value="1953">1953</option>
+                                                <option value="1952">1952</option>
+                                                <option value="1951">1951</option>
+                                                <option value="1950">1950</option>
+                                                <option value="1949">1949</option>
+                                                <option value="1948">1948</option>
+                                                <option value="1947">1947</option>
+                                                <option value="1946">1946</option>
+                                                <option value="1945">1945</option>
+                                                <option value="1944">1944</option>
+                                                <option value="1943">1943</option>
+                                                <option value="1942">1942</option>
+                                                <option value="1941">1941</option>
+                                                <option value="1940">1940</option>
+                                                <option value="1939">1939</option>
+                                                <option value="1938">1938</option>
+                                                <option value="1937">1937</option>
+                                                <option value="1936">1936</option>
+                                                <option value="1935">1935</option>
+                                                <option value="1934">1934</option>
+                                                <option value="1933">1933</option>
+                                                <option value="1932">1932</option>
+                                                <option value="1931">1931</option>
+                                                <option value="1930">1930</option>
+                                                <option value="1929">1929</option>
+                                                <option value="1928">1928</option>
+                                                <option value="1927">1927</option>
+                                                <option value="1926">1926</option>
+                                                <option value="1925">1925</option>
+                                                <option value="1924">1924</option>
+                                                <option value="1923">1923</option>
+                                                <option value="1922">1922</option>
+                                                <option value="1921">1921</option>
+                                                <option value="1920">1920</option>
+                                                <option value="1919">1919</option>
+                                                <option value="1918">1918</option>
+                                                <option value="1917">1917</option>
+                                                <option value="1916">1916</option>
+                                                <option value="1915">1915</option>
+                                                <option value="1914">1914</option>
+                                                <option value="1913">1913</option>
+                                                <option value="1912">1912</option>
+                                            </select>
+                                            <div id="eCARDAlertDOBAnchor" class="eCARDtooltip eCARDAlert"
+                                                style="display: none;">
+                                                <img class="alertQuestionMark"
+                                                    src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">
+                                                <span id="eCARDAlertDOB" class="eCARDtooltiptext">Please select your
+                                                    date of birth.</span>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Guardian Section -->
+                                        <div id="eCARDSectionGuardian" style="display:none;margin-left:20px;">
+                                            <p id="eCARDMessageAge" class="eCARDSectionMessageNote">If you are under the
+                                                age of <span id="eCARDValidateAge">18</span> you must apply at the
+                                                library.</p>
+                                        </div>
+                                        <div id="eCARDSectionLast" style="clear:both;">
+                                            <h2><span id="eCARDHeadingTerms">Statement of Responsibility</span></h2>
+                                            <span id="eCARDMessageTerms">By clicking Submit below, I am agreeing that I
+                                                am responsible for the use of this library card and any related charges
+                                                per the lending library’s policies. I certify that I am legally
+                                                responsible for all materials borrowed on this card, by either myself or
+                                                others. I further understand that library records are confidential, and
+                                                only shared with the cardholder and/or as a result of appropriate legal
+                                                orders.
+                                            </span>
+
+                                            <div style="margin-top:10px;">
+                                                <div style="float:left;">
+                                                    <div id="reCaptchaDiv">
+                                                        <p id="captchaElement">
+                                                        <div style="width: 304px; height: 78px;">
+                                                            <div><iframe title="reCAPTCHA"
+                                                                    src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfodicUAAAAAL6u2HoY4EmB5L8tfyk9asUqwgP4&amp;co=aHR0cHM6Ly9saWJyYXJ5Y2F0YWxvZy5laW5ldHdvcmsubmV0OjQ0Mw..&amp;hl=en&amp;v=5JGZgxkKwe0uOXDdUvSaNtk_&amp;size=normal&amp;cb=vcxq3eju31lp"
+                                                                    width="304" height="78" role="presentation"
+                                                                    name="a-hdbiena7y866" frameborder="0" scrolling="no"
+                                                                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+                                                            </div><textarea id="g-recaptcha-response"
+                                                                name="g-recaptcha-response" class="g-recaptcha-response"
+                                                                style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+                                                        </div><iframe style="display: none;"></iframe></p>
+                                                    </div>
+                                                </div>
+
+                                                <div style="float: left; text-align: center;">
+                                                    <p id="eCARDMessagereCaptcha" class="eCARDSectionMessageNote"
+                                                        style="margin: 0px 10px 10px 5px;">Please check "I'm not a
+                                                        robot" in order to click the Accept button.</p>
+                                                    <input type="button" id="eCARDButtonRegister" class="eCARDButton"
+                                                        value="Accept"
+                                                        style="margin-right: 10px; background-color: lightgrey;"
+                                                        disabled="disabled">
+                                                    <input type="button" id="eCARDButtonClearForm" class="eCARDButton"
+                                                        value="Clear Form">
+                                                    <p id="eCARDMessageValidationError" class="eCARDAlert"
+                                                        style="display:none;font-weight: bold;color:red;">Some required
+                                                        fields have been left blank or are invalid. Please scroll up and
+                                                        fill in the fields marked with <img class="alertQuestionMark"
+                                                            src="https://ecard.quipugroup.net/imgs/alertquestionmark.png">,
+                                                        then resubmit.</p>
+                                                </div>
+                                            </div>
+                                            <!-- registration location - where user is registring from - "WWW" or particular branch -->
+                                            <input type="hidden" id="eCARDBranchID_location" value="1">
+                                            <script
+                                                src="https://www.google.com/recaptcha/api.js?onload=eCARDOnloadCallback&amp;render=explicit&amp;hl=en"></script>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="eCARDConfirmation" style="display:none;"></div>
+                            </document>
+                            
+                            <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable"
+                                tabindex="-1" role="dialog" aria-describedby="eCARDDialog" aria-labelledby="ui-id-1"
+                                style="display: none; position: absolute;">
+                                <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span
+                                        id="ui-id-1" class="ui-dialog-title">Registration Message</span><button
+                                        type="button"
+                                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close"
+                                        role="button" aria-disabled="false" title="close"><span
+                                            class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span
+                                            class="ui-button-text">close</span></button></div>
+                                <div id="eCARDDialog" class="ui-dialog-content ui-widget-content"></div>
+                                <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
+                                <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+                                <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+                                <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+                                <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"
+                                    style="z-index: 90;"></div>
+                                <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+                                <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+                                <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modalScrollBar" onmousedown="StartScrollBarDrag(false); return false;"
+                ontouchstart="StartScrollBarDrag(true); return false;" style="height: 497px; display: none;">
+                <div class="modalScrollSlider" style="height: 1092.96px; top: 0px;"></div>
+                <div class="modalScrollExpandedClickZone"></div>
+            </div>
+        </div>
+        <div class="modal-footer" style="display: block;">
+            <div id="loginModalLoginFooter">
+                <button class="btn-alternate btn-wide" onclick="$('#modalClose').click()">Cancel</button>
+                <button class="btn-default btn-wide" onclick="SubmitLogIn()">Log In</button>
+            </div>
+            <div id="loginModalResetFooter" style="display:none">
+                <button class="btn-alternate btn-wide" onclick="$('#modalClose').click()">Cancel</button>
+                <button class="btn-default btn-wide" onclick="SubmitReset()">Request PIN Change</button>
+            </div>
+            <div id="loginModalRegisterFooter" style="display:none">
+                <button class="btn-alternate btn-wide" onclick="$('#modalClose').click()">Cancel</button>
+                <button class="btn-default btn-wide" onclick="$('#loginModalLogin').click()">Go to Login</button>
+            </div>
+            <div id="loadingFooter" style="display:none;padding:9px;color:#3d3d3d">
+                <span><i class="fa fa-spinner"></i></span>
+                <span>&nbsp;Loading...</span>
+            </div>
+
+            <script src="../JS/Register.js"></script>
+
+            <script type="text/javascript">
+                if (parent !== window) {
+                    $(document).ready(function () { if (!parent.VuFind.lightbox.getCurrentUrl()) { parent.VuFind.lightbox.ajax({ 'url': '/MyResearch/Login' }); } });
+                }
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
