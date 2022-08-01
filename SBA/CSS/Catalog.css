@@ -1,0 +1,15 @@
+.book-list {
+    border:1px solid #C0C0C0;
+    border-collapse:collapse;
+    padding: 15px;
+    margin: 25px;
+}
+.book-list th {
+    border:1px solid #C0C0C0;
+    padding: 10px 15px;
+    background:#F0F0F0;
+}
+.book-list td {
+    border:1px solid #C0C0C0;
+    padding: 10px 15px;
+}

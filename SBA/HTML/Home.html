@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/Home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .cta a {
+  border: 0;
+  background-color: rgb(217, 233, 248);
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  padding: 14px 10px;
+  width: 230px;
+  outline: none;
+  color: rgba(7, 99, 185);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+.cta a:hover {
+  background-color: rgb(2, 52, 99);
+  color: aliceblue;
+}
+    </style>
+    <title>Perscholas Library</title>
+  </head>
+  <!--body style="background: no-repeat center/100% url('../Images/Library.jpg') ; background-position: cover;opacity: 1;"-->
+  <body>
+    <section class="header">
+      <nav>
+        <a href="./Login.html"><img src="../Images/perscholas-logo.png" /></a>
+        <div class="nav-links" id="nav-links">
+          <i class="fa fa-circle-xmark" onClick="toggleMenu('show')"></i>
+          <ul>
+            <li><a href="./Home.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="./Catalog.html">Catalog</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onClick="toggleMenu('hide')"></i>
+      </nav>
+      <div class="welcome-note">
+        <h1>Welcome to Library</h1>
+      </div>
+    </section>
+    <!--JavaScript for toggleMenu -->
+    <script>
+      var navLinks = document.getElementById("nav-links");
+      function toggleMenu(menu) {
+        switch (menu) {
+          case "show":
+            navLinks.style.right = "-200px";
+            break;
+          case "hide":
+            navLinks.style.right = "0";
+            break;
+        }
+      }
+    </script>
+    <!--Departments-->
+    <section class="department">
+      <h1>Departments</h1>
+      <div class="row">
+        <div class="department-col">
+          <h3>Children's</h3>
+          <p>
+            <b>1000 Books Before Kindergarten</b> This reading program
+            encourages families and caregivers to read 1,000 books with their
+            young children before they enter kindergarten.
+          </p>
+        </div>
+        <div class="department-col">
+          <h3>eResources</h3>
+          <p>
+            <b>Local Library Resources</b> Check with your local library to see
+            if they offer additional resources, as some libraries purchase
+            subscriptions locally.
+          </p>
+        </div>
+        <div class="department-col">
+          <h3>Adult's</h3>
+          <p>
+            <b>Lucky Day Collection</b> Per Scholas is pleased to offer this
+            program which offers access to the best-selling new releases in
+            books and newly released popular DVDs. No more waiting on a hold
+            list, drop by and see if it’s your Lucky Day!
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="campus">
+      <h1>Our Global Campus</h1>
+      <p></p>
+      <div class="row">
+        <div class="campus-col">
+          <img src="../Images/Pittsburgh.jpg" alt="Pittsburgh" />
+          <div class="layer">
+            <h3>Pittsburgh</h3>
+          </div>
+        </div>
+        <div class="campus-col">
+          <img src="../Images/Charlotte.jpg" alt="Charlotte" />
+          <div class="layer">
+            <h3>Charlotte</h3>
+          </div>
+        </div>
+        <div class="campus-col">
+          <img src="../Images/Baltimore.jpg" alt="Baltimore" />
+          <div class="layer">
+            <h3>Baltimore</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--contact details-->
+    <section class="cta">
+      <h1>Ask as for More details about Programs available in Library</h1>
+      <a href="#" id="hero-btn">Contact us</a>
+    </section>
+
+    <section class="footer">
+      <h4>About Us</h4>
+      <p>
+        At Per Scholas, we believe a thriving workforce starts with equitable
+        access to education. Learn about Per Scholas and how we provide skills
+        training and access to employer networks to individuals often excluded
+        from tech careers. Per Scholas envisions a technology workforce as
+        diverse as the customers it serves. Over 16,000 graduates have launched
+        successful careers in tech to date through our no-cost technical
+        training. Our mission is to advance economic equity through rigorous
+        training for tech careers and to connect skilled talent to leading
+        businesses.
+      </p>
+      <div class="icons">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-linkedin"></i>
+      </div>
+      <p>Made by <i class="fa-regular fa-at"></i> Padmaja</p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/Catalog.css" />
+    <link rel="stylesheet" href="../CSS/Home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="../JS/Register.js"></script>
+    <title>Catalog</title>
+  </head>
+  <body>
+    <section class="header">
+      <nav>
+        <a href="./Login.html"><img src="../Images/perscholas-logo.png" /></a>
+        <div class="nav-links" id="nav-links">
+          <i class="fa fa-circle-xmark" onClick="toggleMenu('show')"></i>
+          <ul>
+            <li><a href="./Home.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="./Catalog.html">Catalog</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onClick="toggleMenu('hide')"></i>
+      </nav>
+      <div class="welcome-note">
+        <h1>Welcome to Library</h1>
+      </div>
+    </section>
+    <section class="catalog-container">
+      <table class="book-list">
+        <caption><h2>Book List</h2></caption>
+        <thead>
+        <tr>
+          <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Genre</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>The Book Thief</strong>
+              <p>The extraordinary, beloved novel about the ability of books to feed the soul even in the darkest of times. When Death has a story to tell, you listen.</p>
+            </td>
+            <td>Markus Zusak</td>
+            <td>Historical Fiction</td>
+        </tr>
+        <tr>
+            <td><strong> Cruel Prince</strong>
+              <p>It's about anger. Betrayal. Revenge. Secrets and, above all, power. This is the dangerous tale of a human girl who grew up in faerieland and has endured much ...</p>
+            </td>
+            <td>Holly Black</td>
+            <td>Fantasy</td>
+        </tr>
+        <tr>
+            <td><strong>The Silent Patient</strong>
+              <p>The Silent Patient is a swarming, paranoid nightmare of a novel with an ending that is destined to go down as one of the most shocking, mind-blowing twists in ...</p>
+            </td>
+            <td> Alex Michaelides</td>
+            <td>Psychological Fiction</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="footer" id="about">
+      <h4>About Us</h4>
+      <p>
+        At Per Scholas, we believe a thriving workforce starts with equitable
+        access to education. Learn about Per Scholas and how we provide skills
+        training and access to employer networks to individuals often excluded
+        from tech careers. Per Scholas envisions a technology workforce as
+        diverse as the customers it serves. Over 16,000 graduates have launched
+        successful careers in tech to date through our no-cost technical
+        training. Our mission is to advance economic equity through rigorous
+        training for tech careers and to connect skilled talent to leading
+        businesses.
+      </p>
+      <div class="icons">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-linkedin"></i>
+      </div>
+      <p>Made by <i class="fa-regular fa-at"></i> Padmaja</p>
+    </section>
+  </body>
+</html>

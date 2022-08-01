@@ -1,0 +1,167 @@
+@import url(./form.css);
+
+.register-container {
+  /* background-image: url("../Images/Heart-Library.jpg"); */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.title {
+  border-bottom: 1px solid black;
+  padding: 20px 40px;
+}
+
+.title h1 {
+  color: white;
+  font-size: 47px;
+  -webkit-text-stroke: 1px #f8f8f8;
+  text-shadow: 0px 2px 4px rgba(186, 75, 6, 0.778);
+}
+
+.form {
+  padding: 30px 40px;
+}
+
+.form-control {
+  margin: 10px auto;
+}
+
+.form-control label {
+  margin: 20px 15px 0 0;
+  font-size: 16px;
+  min-width: 145px;
+  vertical-align: middle;
+  float: left;
+}
+
+.form-control input {
+  display: block;
+  margin: 10px 0;
+  border: 1px solid rgb(7, 99, 185);
+  padding: 14px 10px;
+  width: 230px;
+  outline: none;
+  border-radius: 8px;
+  float: right;
+}
+
+.form-control input:focus {
+  background-color: rgba(7, 99, 185, 0.15);
+}
+
+.form-control input:hover {
+  outline: none;
+  border-color: rgb(38, 44, 44);
+}
+.form-control.success input {
+  border-color: chartreuse;
+}
+
+.form-control.error input {
+  border-color: rgb(161, 26, 16);
+}
+
+.form-control i {
+  visibility: hidden;
+  position: absolute;
+  top: 55px;
+  right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+  visibility: visible;
+  color: chartreuse;
+}
+
+.form-control.error i.fa-exclamation {
+  visibility: visible;
+  color: rgb(161, 26, 16);
+}
+
+.form-control small {
+  color: rgb(161, 26, 16);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+/* .register-container button {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid brown;
+  padding: 14px 10px;
+  width: 220px;
+  outline: none;
+  color: rgb(255, 60, 0);
+  border-radius: 24px;
+  transition: 0.25px;
+  cursor: pointer;
+}
+
+.register-container button:hover {
+  background-color: brown;
+  color: aliceblue;
+} */
+
+.register-container button {
+  border: 0;
+  background-color: rgba(7, 99, 185);
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  padding: 14px 10px;
+  width: 230px;
+  outline: none;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.register-container button:hover {
+  background-color: rgb(2, 52, 99);
+  color: aliceblue;
+}
+
+.register-container a {
+  color: rgb(7, 99, 185);
+  display: inline-block;
+  margin-left: 70%;
+}
+
+.register-container a::after {
+  content: "\21E8";
+  font-weight: 400;
+}
+.register-container a:hover {
+  color: rgb(87, 167, 241);
+  border-bottom: 2px dotted rgb(87, 167, 241);
+}
+
+fieldset {
+  border-radius: 8px;
+  padding: 15px;
+  border: 2px solid rgba(7, 99, 185, 0.621);
+  max-width: 60vw;
+  margin: 15px auto;
+}
+
+legend {
+  color: rgb(7, 99, 185);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
