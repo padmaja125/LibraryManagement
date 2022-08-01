@@ -1,5 +1,3 @@
-@import url(./form.css);
-
 .register-container {
   /* background-image: url("../Images/Heart-Library.jpg"); */
   display: flex;
@@ -59,7 +57,7 @@
   border-color: rgb(38, 44, 44);
 }
 .form-control.success input {
-  border-color: chartreuse;
+  border-color: #27bf30;
 }
 
 .form-control.error input {
@@ -69,13 +67,12 @@
 .form-control i {
   visibility: hidden;
   position: absolute;
-  top: 55px;
-  right: 10px;
+  transform: translate(200px, 25px);
 }
 
 .form-control.success i.fa-check-circle {
   visibility: visible;
-  color: chartreuse;
+  color: #27bf30;
 }
 
 .form-control.error i.fa-exclamation {
