@@ -22,7 +22,7 @@
     <script src="../JS/Register.js"></script>
     <title>Catalog</title>
   </head>
-  <body>
+  <body onload="CreateTableFromJSON()">
     <section class="header">
       <nav>
         <a href="./Login.html"><img src="../Images/perscholas-logo.png" /></a>
@@ -42,7 +42,7 @@
         <h1>Welcome to Library</h1>
       </div>
     </section>
-    <section class="catalog-container">
+    <section class="catalog-container" id="catalog">
       <!--table class="book-list">
         <caption><h2>Book List</h2></caption>
         <thead>
@@ -55,114 +55,116 @@
         <tbody>
           <tr>
             <td><strong>The Book Thief</strong>
-              <p>The extraordinary, beloved novel about the ability of books to feed the soul even in the darkest of times. When Death has a story to tell, you listen.</p>
-            </td>
-            <td>Markus Zusak</td>
-            <td>Historical Fiction</td>
-        </tr>
-        <tr>
-            <td><strong> Cruel Prince</strong>
-              <p>It's about anger. Betrayal. Revenge. Secrets and, above all, power. This is the dangerous tale of a human girl who grew up in faerieland and has endured much ...</p>
-            </td>
-            <td>Holly Black</td>
-            <td>Fantasy</td>
-        </tr>
-        <tr>
-            <td><strong>The Silent Patient</strong>
-              <p>The Silent Patient is a swarming, paranoid nightmare of a novel with an ending that is destined to go down as one of the most shocking, mind-blowing twists in ...</p>
-            </td>
-            <td> Alex Michaelides</td>
-            <td>Psychological Fiction</td>
-        </tr>
-        </tbody>
-      </table -->
-      <input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />
-      <p id="showData"></p>
-    </section>
-    <section class="footer" id="about">
-      <h4>About Us</h4>
-      <p>
-        At Per Scholas, we believe a thriving workforce starts with equitable
-        access to education. Learn about Per Scholas and how we provide skills
-        training and access to employer networks to individuals often excluded
-        from tech careers. Per Scholas envisions a technology workforce as
-        diverse as the customers it serves. Over 16,000 graduates have launched
-        successful careers in tech to date through our no-cost technical
-        training. Our mission is to advance economic equity through rigorous
-        training for tech careers and to connect skilled talent to leading
-        businesses.
-      </p>
-      <div class="icons">
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-linkedin"></i>
-      </div>
-      <p>Made by <i class="fa-regular fa-at"></i> Padmaja</p>
-    </section>
-    <script>
-      function CreateTableFromJSON() {
-          var myBooks = [
-              {
-                  "Book ID": "1",
-                  "Book Name": "Computer Architecture",
-                  "Category": "Computers",
-                  "Price": "125.60"
-              },
-              {
-                  "Book ID": "2",
-                  "Book Name": "Asp.Net 4 Blue Book",
-                  "Category": "Programming",
-                  "Price": "56.00"
-              },
-              {
-                  "Book ID": "3",
-                  "Book Name": "Popular Science",
-                  "Category": "Science",
-                  "Price": "210.40"
-              }
-          ]
-  
-          // EXTRACT VALUE FOR HTML HEADER. 
-          // ('Book ID', 'Book Name', 'Category' and 'Price')
-          var col = [];
-          for (var i = 0; i < myBooks.length; i++) {
-              for (var key in myBooks[i]) {
-                  if (col.indexOf(key) === -1) {
-                      col.push(key);
-                  }
-              }
-          }
-  
-          // CREATE DYNAMIC TABLE.
-          var table = document.createElement("table");
-  
-          // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-  
-          var tr = table.insertRow(-1);                   // TABLE ROW.
-  
-          for (var i = 0; i < col.length; i++) {
-              var th = document.createElement("th");      // TABLE HEADER.
-              th.innerHTML = col[i];
-              tr.appendChild(th);
-          }
-  
-          // ADD JSON DATA TO THE TABLE AS ROWS.
-          for (var i = 0; i < myBooks.length; i++) {
-  
-              tr = table.insertRow(-1);
-  
-              for (var j = 0; j < col.length; j++) {
-                  var tabCell = tr.insertCell(-1);
-                  tabCell.innerHTML = myBooks[i][col[j]];
-              }
-          }
-  
-          // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-          var divContainer = document.getElementById("showData");
-          divContainer.innerHTML = "";
-          divContainer.appendChild(table);
-      }
-  </script>
-  </body>
-</html>
+                <p>The extraordinary, beloved novel about the ability of books to feed the soul even in the darkest of times. When Death has a story to tell, you listen.</p>
+              </td>
+              <td>Markus Zusak</td>
+              <td>Historical Fiction</td>
+          </tr>
+          <tr>
+              <td><strong> Cruel Prince</strong>
+                <p>It's about anger. Betrayal. Revenge. Secrets and, above all, power. This is the dangerous tale of a human girl who grew up in faerieland and has endured much ...</p>
+              </td>
+              <td>Holly Black</td>
+              <td>Fantasy</td>
+          </tr>
+          <tr>
+              <td><strong>The Silent Patient</strong>
+                <p>The Silent Patient is a swarming, paranoid nightmare of a novel with an ending that is destined to go down as one of the most shocking, mind-blowing twists in ...</p>
+              </td>
+              <td> Alex Michaelides</td>
+              <td>Psychological Fiction</td>
+          </tr>
+          </tbody>
+        </table -->
+      </section>
+      <section class="footer" id="about">
+        <h4>About Us</h4>
+        <p>
+          At Per Scholas, we believe a thriving workforce starts with equitable
+          access to education. Learn about Per Scholas and how we provide skills
+          training and access to employer networks to individuals often excluded
+          from tech careers. Per Scholas envisions a technology workforce as
+          diverse as the customers it serves. Over 16,000 graduates have launched
+          successful careers in tech to date through our no-cost technical
+          training. Our mission is to advance economic equity through rigorous
+          training for tech careers and to connect skilled talent to leading
+          businesses.
+        </p>
+        <div class="icons">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-linkedin"></i>
+        </div>
+        <p>Made by <i class="fa-regular fa-at"></i> Padmaja</p>
+      </section>
+      <script>
+        function CreateTableFromJSON() {
+            var myBooks = [
+                {
+                    "Book ID": "1",
+                    "Book Name": "The Book Thief",
+                    "Author": "Markus Zusak",
+                    "Genre":"Historical Fiction",
+                    "Description":"The extraordinary, beloved novel about the ability of books to feed the soul even in the darkest of times. When Death has a story to tell, you listen."
+                },
+                {
+                    "Book ID": "2",
+                    "Book Name": " Cruel Prince",
+                    "Author": "Holly Black",
+                    "Genre":"Fantasy",
+                    "Description": "It's about anger. Betrayal. Revenge. Secrets and, above all, power. This is the dangerous tale of a human girl who grew up in faerieland and has endured much ..."
+                },
+                {
+                    "Book ID": "3",
+                    "Book Name": "The Silent Patient",
+                    "Author": "Alex Michaelides",
+                    "Genre":"Psychological Fiction",
+                    "Description": "The Silent Patient is a swarming, paranoid nightmare of a novel with an ending that is destined to go down as one of the most shocking, mind-blowing twists in ..."
+                }
+            ]
+    
+            // EXTRACT VALUE FOR HTML HEADER. 
+            // ('Book ID', 'Book Name', 'Category' and 'Price')
+            var col = [];
+            for (var i = 0; i < myBooks.length; i++) {
+                for (var key in myBooks[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+    
+            // CREATE DYNAMIC TABLE.
+            var table = document.createElement("table");
+            table.classList.add('book-list');
+    
+            // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+    
+            var tr = table.insertRow(-1);                   // TABLE ROW.
+    
+            for (var i = 0; i < col.length; i++) {
+                var th = document.createElement("th");      // TABLE HEADER.
+                th.innerHTML = col[i];
+                tr.appendChild(th);
+            }
+    
+            // ADD JSON DATA TO THE TABLE AS ROWS.
+            for (var i = 0; i < myBooks.length; i++) {
+    
+                tr = table.insertRow(-1);
+    
+                for (var j = 0; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = myBooks[i][col[j]];
+                }
+            }
+    
+            // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+            var divContainer = document.getElementById("catalog");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+        }
+    </script>
+    </body>
+  </html>
